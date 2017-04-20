@@ -3,6 +3,7 @@ import socket
 import threading
 from time import sleep
 
+exitgiven = 'stillworking'
 timer = 0
 
 nodes = {'pan01':{'Hostname': 'pan01', 'IP': "192.168.0.101", 'Status': 'unkown'},
