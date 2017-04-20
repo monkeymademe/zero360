@@ -82,6 +82,7 @@ def lapse():
 		cmd = 'snap'
 		sendcmd(cmd)
 		sleep(3)
+	timer = 0
 	return
 
 def main(window):
@@ -104,6 +105,7 @@ def main(window):
 			window.addstr(12, 0, 'Press F to snap a frame')
 			window.addstr(13, 0, 'Press 3 to start a 3sec Time-lapse')
 			window.addstr(14, 0, 'Press P to stop all recording')
+
 			window.refresh()
 			c = window.getch()
 			if c == ord('q'):
@@ -124,9 +126,10 @@ def main(window):
 			elif c == ord('3'):
 				if timer == 0:
 					timer = 1
-					global lapse
-					lapse = threading.Thread(target=lapse)
-					lapse.start()
+					#need to look up how to remove a line
+					window.addstr(15, 0, '                         ')
+				elif timer == 1:
+					window.addstr(15, 0, 'Timelapse already running')
 				cmd = '3s'
 			elif c == ord('p'):
 				timer = 0
@@ -138,6 +141,9 @@ def main(window):
 
 listen = threading.Thread(target=listen)
 listen.start()
+
+lapse = threading.Thread(target=lapse)
+lapse.start()
 
 curses.initscr()
 curses.wrapper(main)
