@@ -3,10 +3,6 @@ import socket
 import threading
 from time import sleep
 
-#message = 'testing'
-#multicast_group = ('224.3.29.71', 21567)
-#cmd = 'nocmd'
-exitgiven = 'working'
 timer = 0
 
 nodes = {'pan01':{'Hostname': 'pan01', 'IP': "192.168.0.101", 'Status': 'unkown'},
@@ -65,9 +61,6 @@ def parsenodename(addr):
 		if nodes[i]['IP'] == addr[0]:
 			return(nodes[i]['Hostname'])
 
-def sendcmd(cmd, multicast_group):
-	sent = sock.sendto(cmd, multicast_group)
-
 def listen():
 	while True:
 		data,addr = UDPSock.recvfrom(1024)
@@ -77,7 +70,6 @@ def listen():
 			print('Stopped Listening')
 			break
 	return
-
 
 def sendcmd(cmd):
 	for i in nodes:
@@ -91,32 +83,6 @@ def lapse():
 		sendcmd(cmd)
 		sleep(3)
 	return
-
-#while True:
-#	cmd = raw_input('Enter command: ')
-#	if cmd == 'check':
-#		for i in nodes:
-#			nodes[i]['Status'] = 'check';
-#			addr = (nodes[i]['IP'],21567)
-#			UDPSock.sendto(cmd,addr)
-#	elif cmd == 'status':
-#		showstatus()
-#	elif cmd == 'exit':
-#		exitgiven = 'stop'
-#		for i in nodes:
-#			nodes[i]['Status'] = 'check';
-#			addr = (nodes[i]['IP'],21567)
-#			UDPSock.sendto(cmd,addr)
-#	elif cmd == 'setup':
-#		sendcmd(cmd)
-#	elif cmd == 'snap':
-#		sendcmd(cmd)
-#	elif cmd == 'stop':
-#		for i in nodes:
-#			nodes[i]['Status'] = 'stopped';
-#		sendcmd(cmd)
-#	else:
-#		print('This is not a vailid command')
 
 def main(window):
 	window.nodelay(True)
