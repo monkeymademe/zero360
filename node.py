@@ -42,7 +42,7 @@ class MyOutput(object):
 			self.output = None
 			if self.write_frame:
 				self.file_num += 1
-				self.output = io.open('%s_%d.jpg' % (self.file_num, self.whoami), 'wb')
+				self.output = io.open('%d_%s.jpg' % (self.file_num, self.whoami), 'wb')
 				message = 'Frame %d' % self.file_num
 				print(message)
 				replytohost(message)

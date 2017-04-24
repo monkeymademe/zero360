@@ -79,11 +79,11 @@ def sendcmd(cmd):
 
 def lapse():
 	global timer
-	while timer == 1:
-		cmd = 'snap'
-		sendcmd(cmd)
-		sleep(3)
-	timer = 0
+	while True:
+		if timer == 1:
+			cmd = 'snap'
+			sendcmd(cmd)
+			sleep(3)
 	return
 
 def main(window):
